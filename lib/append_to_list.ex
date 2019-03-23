@@ -5,6 +5,29 @@ defmodule Example do
   """
 
   @doc """
+  Build given number of activities and append to a list.
+
+  ## Examples
+
+      iex> Example.build_activities([], 2)
+      [%{state: :ok}, %{state: :ok}]
+
+      iex> Example.build_activities([%{state: :error}], 2)
+      [%{state: :error}, %{state: :ok}, %{state: :ok}]
+
+      iex> Example.build_activities([], 0)
+      []
+
+  """
+  def build_activities(activities, count) when count < 1, do: activities
+
+  def build_activities(activities, count) do
+    Enum.reduce(1..count, activities, fn _, acc ->
+      acc ++ [build_success_activity()]
+    end)
+  end
+
+  @doc """
   Build given number of activities.
 
   ## Examples
@@ -27,20 +50,36 @@ defmodule Example do
   end
 
   @doc """
-  Build given number of activities and append to a list.
+  Version of `build_activities/2` that didn't quite work.
+
+  ## Here's Why
+
+      iex> activities = []
+      iex> for _i <- 1..2, do: activities ++ %{state: :ok}
+      [%{state: :ok}, %{state: :ok}]
+
+      iex> activities = [%{state: :error}]
+      iex> for _i <- 1..2, do: activities ++ %{state: :ok}
+      [[%{state: :error} | %{state: :ok}], [%{state: :error} | %{state: :ok}]]
+
+      iex> activities = [%{state: :error}]
+      iex> for _i <- 1..2, do: activities ++ [%{state: :ok}]
+      [[%{state: :error}, %{state: :ok}], [%{state: :error}, %{state: :ok}]]
 
   ## Examples
 
-      iex> Example.build_activities([], 2)
+      # Works with an empty list:
+      iex> Example.failing_build_activities([], 2)
       [%{state: :ok}, %{state: :ok}]
 
-      iex> Example.build_activities([%{state: :error}], 2)
-      [%{state: :error}, %{state: :ok}, %{state: :ok}]
+      # Doesn't work with a prefilled list:
+      iex> Example.failing_build_activities([%{state: :error}], 2)
+      [[%{state: :error} | %{state: :ok}], [%{state: :error} | %{state: :ok}]]
 
   """
-  def build_activities(activities, count) do
+  def failing_build_activities(activities, count) do
     for _i <- 1..count do
-      activities ++ [build_success_activity()]
+      activities ++ build_success_activity()
     end
   end
 
