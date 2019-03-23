@@ -40,7 +40,7 @@ defmodule Example do
   """
   def build_activities(activities, count) do
     for _i <- 1..count do
-      activities ++ build_success_activity()
+      activities ++ [build_success_activity()]
     end
   end
 
