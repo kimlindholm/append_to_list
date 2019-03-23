@@ -19,8 +19,11 @@ defmodule Example do
       []
 
   """
+  @spec build_activities(list(map), 0) :: list(map)
+  @spec build_activities(list(map), neg_integer()) :: list(map)
   def build_activities(activities, count) when count < 1, do: activities
 
+  @spec build_activities(list(map), pos_integer()) :: [map, ...]
   def build_activities(activities, count) do
     Enum.reduce(1..count, activities, fn _, acc ->
       acc ++ [build_success_activity()]
@@ -39,8 +42,11 @@ defmodule Example do
       []
 
   """
+  @spec build_activities(0) :: []
+  @spec build_activities(neg_integer()) :: []
   def build_activities(count) when count < 1, do: []
 
+  @spec build_activities(pos_integer()) :: [map, ...]
   def build_activities(count) do
     activities = []
 
