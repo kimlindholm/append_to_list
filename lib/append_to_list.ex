@@ -1,6 +1,6 @@
-defmodule AppendToList do
+defmodule Example do
   @moduledoc """
-  Documentation for AppendToList.
+  Documentation for Example.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule AppendToList do
 
   ## Examples
 
-      iex> AppendToList.hello()
+      iex> Example.hello()
       :world
 
   """

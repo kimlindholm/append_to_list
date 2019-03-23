@@ -1,8 +1,4 @@
-defmodule AppendToListTest do
+defmodule ExampleTest do
   use ExUnit.Case
-  doctest AppendToList
-
-  test "greets the world" do
-    assert AppendToList.hello() == :world
-  end
+  doctest Example
 end
