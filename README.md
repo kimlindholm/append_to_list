@@ -7,3 +7,9 @@
     $ mix test
     $ mix credo
     $ mix dialyzer
+
+## Documentation
+
+ Generate project documentation:
+
+     $ mix docs
