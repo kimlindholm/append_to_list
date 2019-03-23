@@ -6,3 +6,4 @@
 
     $ mix test
     $ mix credo
+    $ mix dialyzer
